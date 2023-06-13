@@ -1,0 +1,5 @@
+homepage: 'https://advertience.com/'
+documentation: 'https://github.com/advertience-inc/Attribution-Linker/blob/main/README.md'
+versions:
+  - sha: TODO GET SHA
+    changeNotes: Initial release
