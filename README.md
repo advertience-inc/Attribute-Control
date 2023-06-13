@@ -17,7 +17,7 @@ This tag will add three variables to the dataLayer: `source`, `medium`, and `cam
 - To use the attribution on all pages, it is recommended you use the `All Pages` trigger. Otherwise create a new trigger that fires on page view of the pages you want them to
 - Save the tag
 
-<br>
+![Example Attribution Tag](./images/AttributionTag.png)
 
 ### 2. Make your three dataLayer variables
 
@@ -29,7 +29,7 @@ You will need to create a variable for each of `source`, `medium`, and `campaign
 - In `Data Layer Variable Name`, write the appropriate choice of `source`, `medium`, or `campaign`
 - Save the variable and repeat until all three variables are created
 
-<br>
+![Example Attribution Tag](./images/sourceVariable.png)
 
 ### 3. Create `adv_pageview` custom event
 
@@ -39,7 +39,7 @@ You will need to create a variable for each of `source`, `medium`, and `campaign
 - In `Event name`, write `adv_pageview`
 - Save the trigger
 
-<br>
+![Example adv_pageview event](./images/adv_pageview.png)
 
 ### 4. Edit your GA4 Configuration tag
 
@@ -51,6 +51,8 @@ You will need to create a variable for each of `source`, `medium`, and `campaign
 - For the `Value` rows, click the `+` button and find your appropriate variable from step 2, click on it
 - Add the `adv_pageview` trigger from step 3 to the tag
 - Save the tag
+
+![Example GA4 Tag](./images/GA4Tag.png)
 
 After these steps have been taken, the tag should be working correctly, and the GA4 configuration tag will fire with the proper fields being set with the proper values.
 
