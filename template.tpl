@@ -50,7 +50,7 @@ ___SANDBOXED_JS_FOR_WEB_TEMPLATE___
 // Inject script which adds a dataLayerPusher function to the window object, then call this new function in window, which will get UTM parameters from advertience API and push to dataLayer
 const injectScript = require('injectScript');
 const callInWindow = require('callInWindow');
-const scriptUrl = 'https://cdn.jsdelivr.net/gh/advertience-inc/Attribute-Control@v1.0.0/attributeControl.js';
+const scriptUrl = 'https://cdn.jsdelivr.net/gh/advertience-inc/Attribution-Linker@v1.0.1/attributeControl.js';
 
 injectScript(scriptUrl, onSuccess, data.gtmOnFailure);
 
@@ -138,7 +138,7 @@ ___WEB_PERMISSIONS___
             "listItem": [
               {
                 "type": 1,
-                "string": "https://cdn.jsdelivr.net/gh/advertience-inc/Attribute-Control@v1.0.0/attributeControl.js"
+                "string": "https://cdn.jsdelivr.net/gh/advertience-inc/Attribution-Linker@v1.0.1/attributeControl.js"
               }
             ]
           }
