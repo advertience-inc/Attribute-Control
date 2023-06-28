@@ -47,7 +47,7 @@ You will need to create a variable for each of `source`, `medium`, and `campaign
 - Click on your `Google Analytics: GA4 Configuration` tag
 - Open the `Fields to Set` section
 - Click the `Add Row` button three times to make space for the three new parameters
-- Enter in the `Field Name` rows: `source`, `medium`, and `campaign`
+- Enter in the `Field Name` rows: `campaign_source`, `campaign_medium`, and `campaign_name`
 - For the `Value` rows, click the `+` button and find your appropriate variable from step 2, click on it
 - Add the `adv_pageview` trigger from step 3 to the tag
 - Save the tag
