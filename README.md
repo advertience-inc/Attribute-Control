@@ -14,7 +14,7 @@ This tag will add three variables to the dataLayer: `source`, `medium`, and `cam
 - Create a new tag
 - Choose `Advertience Attribution Linker` configuration from the Community Template Gallery
 - In `Client Tab`, write your Advertience Attribution client tab name
-- To use the attribution on all pages, it is recommended you use the `All Pages` trigger. Otherwise create a new trigger that fires on page view of the pages you want them to
+- To use the attribution on all pages, it is recommended you use the `Initialization - All Pages` trigger. Otherwise create a new trigger that fires on page view of the pages you want them to
 - Save the tag
 
 ![Example Attribution Tag](./images/AttributionTag.png)
@@ -29,7 +29,7 @@ You will need to create a variable for each of `source`, `medium`, and `campaign
 - In `Data Layer Variable Name`, write the appropriate choice of `source`, `medium`, or `campaign`
 - Save the variable and repeat until all three variables are created
 
-![Example Attribution Tag](./images/sourceVariable.png)
+![Example Source Variable](./images/sourceVariable.png)
 
 ### 3. Create `adv_pageview` custom event
 
@@ -41,10 +41,15 @@ You will need to create a variable for each of `source`, `medium`, and `campaign
 
 ![Example adv_pageview event](./images/adv_pageview.png)
 
-### 4. Edit your GA4 Configuration tag
+### 4. Set your two GA4 Configuration tags
 
 - Navigate to `Tags`
 - Click on your `Google Analytics: GA4 Configuration` tag
+- Change the name to `GA4 - Config (Init)`
+    - Note: All GA4 event tags should use this configuration tag
+- Change the trigger to `Initialization - All Pages`
+- Create a new tag, named `GA4 - Config (Attribution)`
+- For tag type, choose `Google Analytics: GA4 Configuration`
 - Open the `Fields to Set` section
 - Click the `Add Row` button three times to make space for the three new parameters
 - Enter in the `Field Name` rows: `campaign_source`, `campaign_medium`, and `campaign_name`
@@ -54,6 +59,18 @@ You will need to create a variable for each of `source`, `medium`, and `campaign
 
 ![Example GA4 Tag](./images/GA4Tag.png)
 
-After these steps have been taken, the tag should be working correctly, and the GA4 configuration tag will fire with the proper fields being set with the proper values.
+### 5. Set tag settings in GA4
+
+- Go to your GA4 property
+- Navigate to **Admin > Data Streams > [your data stream]**
+- Click on `Configure tag settings`
+- Click on your google tag
+- Under `Additional Settings` toggle OFF `Ignore duplicate instances of on-page configuration (recommended)`
+
+![Example GA4 Tag Settings](./images/GA4TagSettings.png)
+
+After these steps have been taken, the `GA4 - Config (Attribution)` tag will fire with the proper fields being set with the proper values.
+
+How it works is that when the `adv_pageview` event is fired, the `GA4 - Config (Attribution)` tag will fire and update the appropriate campaign parameters to be used by future GA4 event tags. This means that if you want a GA4 event tag that fires on page view to use the attribution, you must add the `adv_pageview` trigger to it rather than the usual `All Pages` trigger. This could be especially important for those tracking purchases.
 
 It is recommended you test the setup in preview mode to ensure it is working as expected.
