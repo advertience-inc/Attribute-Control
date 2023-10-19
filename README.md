@@ -31,7 +31,23 @@ You will need to create a variable for each of `source`, `medium`, and `campaign
 
 ![Example Source Variable](./images/sourceVariable.png)
 
-### 3. Create `adv_pageview` custom event
+### 3. Make your GA4 Settings variable
+
+Using your three dataLayer variables, you will create a variable that you will use with your Google Tag.
+
+- Navigate to `Variables`
+- Create new variable, named `GA4 Settings`
+- Choose `Google Analytics Settings` for the Variable Type
+- Under `Config Parameter`, add 4 parameters
+    - `campaign_source`: Set the value to `{{Source}}` by typing that or clicking the `+` icon on the right and selecting your `Source variable`
+    - `campaign_medium`: Same as with Source, but enter `{{Medium}}` instead
+    - `campaign_name`: Same as with Source, but enter `{{Campaign}}` instead
+    - `send_page_view`: Set the value to true
+- Save the variable
+
+![Example GA4 Settings Variable](./images/GA4Settings.png)
+
+### 4. Create `adv_pageview` custom event
 
 - Navigate to `Triggers`
 - Create new trigger, named `adv_pageview` to avoid confusion
@@ -41,36 +57,19 @@ You will need to create a variable for each of `source`, `medium`, and `campaign
 
 ![Example adv_pageview event](./images/adv_pageview.png)
 
-### 4. Set your two GA4 Configuration tags
+### 5. Set your GA4 Configuration tag
 
 - Navigate to `Tags`
-- Click on your `Google Analytics: GA4 Configuration` tag
-- Change the name to `GA4 - Config (Init)`
-    - Note: All GA4 event tags should use this configuration tag
-- Change the trigger to `Initialization - All Pages`
-- Create a new tag, named `GA4 - Config (Attribution)`
-- For tag type, choose `Google Analytics: GA4 Configuration`
-- Open the `Fields to Set` section
-- Click the `Add Row` button three times to make space for the three new parameters
-- Enter in the `Field Name` rows: `campaign_source`, `campaign_medium`, and `campaign_name`
-- For the `Value` rows, click the `+` button and find your appropriate variable from step 2, click on it
-- Add the `adv_pageview` trigger from step 3 to the tag
+- Click on your container's Google tag
+- Change the trigger to `adv_pageview`
+- Open the `Configuration settings` section
+- Set the Configuration Settings Variable to the `{{GA4 Settings}}` from step 3
 - Save the tag
 
-![Example GA4 Tag](./images/GA4Tag.png)
+![Example Google Tag](./images/GoogleTag.png)
 
-### 5. Set tag settings in GA4
+After these steps have been taken, the Google tag will fire with the proper fields being set with the proper values.
 
-- Go to your GA4 property
-- Navigate to **Admin > Data Streams > [your data stream]**
-- Click on `Configure tag settings`
-- Click on your google tag
-- Under `Additional Settings` toggle OFF `Ignore duplicate instances of on-page configuration (recommended)`
-
-![Example GA4 Tag Settings](./images/GA4TagSettings.png)
-
-After these steps have been taken, the `GA4 - Config (Attribution)` tag will fire with the proper fields being set with the proper values.
-
-How it works is that when the `adv_pageview` event is fired, the `GA4 - Config (Attribution)` tag will fire and update the appropriate campaign parameters to be used by future GA4 event tags. This means that if you want a GA4 event tag that fires on page view to use the attribution, you must add the `adv_pageview` trigger to it rather than the usual `All Pages` trigger. This could be especially important for those tracking purchases.
+How it works is that when the `adv_pageview` event is fired, the Google tag will fire and update the appropriate campaign parameters to be used by future GA4 event tags. This means that if you want a GA4 event tag that fires on page view to use the attribution, you must add the `adv_pageview` trigger to it rather than the usual `All Pages` trigger. This could be especially important for those tracking purchases.
 
 It is recommended you test the setup in preview mode to ensure it is working as expected.
